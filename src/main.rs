@@ -4,6 +4,8 @@ use gtk4_layer_shell::{KeyboardMode, Layer, LayerShell};
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::fs;
+use std::path::PathBuf;
+use xdg::BaseDirectories;
 
 type LaunchData = HashMap<String, String>;
 
@@ -15,24 +17,34 @@ struct Config {
 // fn load_all_desktop_apps() {}
 
 fn load_config() -> LaunchData {
-    // Try to load config.toml, fallback to empty
-    let content = match fs::read_to_string("config.toml") {
-        Ok(c) => c,
-        Err(_) => {
-            eprintln!("Could not read config.toml");
-            return HashMap::new();
-        }
-    };
+    let conf_path = get_config_path();
+    match conf_path {
+        Some(v) => {
+            let content = match fs::read_to_string(v) {
+                Ok(c) => c,
+                Err(_) => {
+                    eprintln!("Could not read config.toml");
+                    return HashMap::new();
+                }
+            };
 
-    let config: Config = match toml::from_str(&content) {
-        Ok(c) => c,
-        Err(e) => {
-            eprintln!("Failed to parse config: {}", e);
-            return HashMap::new();
-        }
-    };
+            let config: Config = match toml::from_str(&content) {
+                Ok(c) => c,
+                Err(e) => {
+                    eprintln!("Failed to parse config: {}", e);
+                    return HashMap::new();
+                }
+            };
 
-    config.apps
+            config.apps
+        }
+        None => HashMap::new(),
+    }
+}
+
+fn get_config_path() -> Option<PathBuf> {
+    let xdg_dirs = BaseDirectories::with_prefix("prefix-launcher");
+    xdg_dirs.find_config_file("config.toml")
 }
 
 fn main() -> glib::ExitCode {
@@ -86,7 +98,7 @@ fn build_ui(app: &Application) {
         img.set_pixel_size(64);
         img.add_css_class("app-icon");
 
-        let key_label = gtk4::Label::new(Some(&format!("{}", f.0.to_uppercase())));
+        let key_label = gtk4::Label::new(Some(&f.0.to_uppercase().to_string()));
         key_label.add_css_class("app-key");
 
         let name_label = gtk4::Label::new(Some(&name));
