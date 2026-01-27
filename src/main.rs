@@ -1,3 +1,4 @@
+use gtk4::gio::FileIcon;
 use gtk4::{gdk, gio, prelude::*, FlowBox};
 use gtk4::{glib, Application, ApplicationWindow, Builder, EventControllerKey};
 use gtk4_layer_shell::{KeyboardMode, Layer, LayerShell};
@@ -65,11 +66,24 @@ fn build_ui(app: &Application) {
         .build();
 
     launch_data.iter().filter(|d| runnable(d.1)).for_each(|f| {
+        let icon = gio::DesktopAppInfo::new(&format!("{}.desktop", f.1))
+            .unwrap()
+            .icon();
+        let img = gtk4::Image::new();
+        if let Some(icon_data) = icon {
+            img.set_from_gicon(&icon_data);
+        }
+        img.set_pixel_size(100);
+
         let label = gtk4::Label::new(Some(&format!("{}\n{}", f.1, f.0)));
         label.set_margin_top(10);
 
+        let vbox = gtk4::Box::new(gtk4::Orientation::Vertical, 5);
+        vbox.append(&img);
+        vbox.append(&label);
+
         let frame = gtk4::Frame::new(None);
-        frame.set_child(Some(&label));
+        frame.set_child(Some(&vbox));
 
         flow_box.insert(&frame, -1);
     });
