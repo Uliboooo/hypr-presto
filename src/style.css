@@ -1,0 +1,43 @@
+window {
+    background-color: rgba(30, 30, 46, 0.95);
+    color: #cdd6f4;
+    border-radius: 16px;
+}
+
+.title-1 {
+    color: #cba6f7;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+flowboxchild {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 10px;
+    margin: 5px;
+    transition: background-color 200ms ease;
+}
+
+flowboxchild:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.app-icon {
+    -gtk-icon-style: regular;
+}
+
+.app-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+.app-key {
+    background-color: #fab387;
+    color: #1e1e2e;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-weight: 900;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}

@@ -1,4 +1,3 @@
-use gtk4::gio::FileIcon;
 use gtk4::{gdk, gio, prelude::*, FlowBox};
 use gtk4::{glib, Application, ApplicationWindow, Builder, EventControllerKey};
 use gtk4_layer_shell::{KeyboardMode, Layer, LayerShell};
@@ -54,38 +53,57 @@ fn runnable(id: &str) -> bool {
 }
 
 fn build_ui(app: &Application) {
+    // Load CSS
+    let provider = gtk4::CssProvider::new();
+    provider.load_from_data(include_str!("style.css"));
+    gtk4::style_context_add_provider_for_display(
+        &gdk::Display::default().expect("Could not connect to a display."),
+        &provider,
+        gtk4::STYLE_PROVIDER_PRIORITY_APPLICATION,
+    );
+
     let launch_data = load_config();
 
     let flow_box = FlowBox::builder()
-        .valign(gtk4::Align::Start)
-        .max_children_per_line(30)
+        .valign(gtk4::Align::Center)
+        .halign(gtk4::Align::Center)
+        .max_children_per_line(5)
         .min_children_per_line(1)
         .selection_mode(gtk4::SelectionMode::None)
-        .column_spacing(10)
-        .row_spacing(10)
+        .column_spacing(20)
+        .row_spacing(20)
         .build();
 
     launch_data.iter().filter(|d| runnable(d.1)).for_each(|f| {
-        let icon = gio::DesktopAppInfo::new(&format!("{}.desktop", f.1))
-            .unwrap()
-            .icon();
+        let app_info = gio::DesktopAppInfo::new(&format!("{}.desktop", f.1)).unwrap();
+        let icon = app_info.icon();
+        let name = app_info.name();
+
         let img = gtk4::Image::new();
         if let Some(icon_data) = icon {
             img.set_from_gicon(&icon_data);
         }
-        img.set_pixel_size(100);
+        img.set_pixel_size(64);
+        img.add_css_class("app-icon");
 
-        let label = gtk4::Label::new(Some(&format!("{}\n{}", f.1, f.0)));
-        label.set_margin_top(10);
+        let key_label = gtk4::Label::new(Some(&format!("{}", f.0.to_uppercase())));
+        key_label.add_css_class("app-key");
 
-        let vbox = gtk4::Box::new(gtk4::Orientation::Vertical, 5);
+        let name_label = gtk4::Label::new(Some(&name));
+        name_label.add_css_class("app-name");
+
+        let vbox = gtk4::Box::new(gtk4::Orientation::Vertical, 8);
         vbox.append(&img);
-        vbox.append(&label);
+        vbox.append(&key_label);
+        vbox.append(&name_label);
+        vbox.set_margin_top(15);
+        vbox.set_margin_bottom(15);
+        vbox.set_margin_start(15);
+        vbox.set_margin_end(15);
 
-        let frame = gtk4::Frame::new(None);
-        frame.set_child(Some(&vbox));
-
-        flow_box.insert(&frame, -1);
+        // FlowBoxChild is created automatically, but we just insert the box content
+        // Note: The CSS style `flowboxchild` will target the container created by insert
+        flow_box.insert(&vbox, -1);
     });
 
     let ui_src = include_str!(concat!(env!("OUT_DIR"), "/window.ui"));
@@ -98,6 +116,10 @@ fn build_ui(app: &Application) {
     let main_box: gtk4::Box = builder
         .object("main_box")
         .expect("Could not find box 'main_box'");
+
+    // Center content
+    main_box.set_valign(gtk4::Align::Center);
+    main_box.set_halign(gtk4::Align::Center);
 
     main_box.append(&flow_box);
 
