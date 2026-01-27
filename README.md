@@ -1,5 +1,9 @@
 # HyprPresto
 
+current version: 0.1.0
+
+JP -> [here](https://github.com/Uliboooo/hypr-presto/blob/main/README_JP.md)}
+
 A minimal, keyboard-centric application launcher for Linux, designed for speed and efficiency. HyprPresto allows you to launch your favorite applications with a single keystroke.
 
 ## Features
@@ -9,6 +13,20 @@ A minimal, keyboard-centric application launcher for Linux, designed for speed a
 - **Wayland Native:** Built with `gtk4-layer-shell`, perfect for compositors like Hyprland and Sway.
 - **Lightweight:** Fast startup and minimal resource usage.
 - **Simple Configuration:** Easy-to-read TOML configuration.
+
+## Usage
+
+![demo](https://github.com/Uliboooo/hypr-presto/blob/main/resource_for_readme/demo.mp4)
+
+1.  Ensure you have your `config.toml` ready.
+2.  Run the application:
+    ```bash
+    hypr-presto
+    ```
+3.  The launcher window will appear.
+4.  **Press the key** corresponding to the app you want to launch (e.g., press `f`).
+5.  The app will launch, and HyprPresto will close automatically.
+6.  To close without launching, press `Esc`.
 
 ## Dependencies
 
@@ -56,20 +74,6 @@ c = "code"                    # Press 'c' to launch VS Code
 ```
 
 > **Note:** To find the correct App ID, look at the filenames in `/usr/share/applications/` (e.g., for `spotify.desktop`, use `spotify`).
-
-## Usage
-
-![Screenshot placeholder](path/to/screenshot.png)
-
-1.  Ensure you have your `config.toml` ready.
-2.  Run the application:
-    ```bash
-    hypr-presto
-    ```
-3.  The launcher window will appear.
-4.  **Press the key** corresponding to the app you want to launch (e.g., press `f`).
-5.  The app will launch, and HyprPresto will close automatically.
-6.  To close without launching, press `Esc`.
 
 ### Integration with Hyprland
 

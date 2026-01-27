@@ -1,5 +1,9 @@
 # HyprPresto
 
+current version: 0.1.0
+
+EN -> [here](https://github.com/Uliboooo/hypr-presto/blob/main/README.md)
+
 Linux向けのミニマルでキーボード中心のアプリケーションランチャーで、速度と効率のために設計されています。HyprPrestoを使用すると、単一のキーストロークでお気に入りのアプリケーションを起動できます。
 
 ## 特徴
@@ -9,6 +13,20 @@ Linux向けのミニマルでキーボード中心のアプリケーションラ
 - **Waylandネイティブ:** `gtk4-layer-shell`で構築されており、HyprlandやSwayなどのコンポジターに最適です。
 - **軽量:** 高速な起動と最小限のリソース使用量。
 - **シンプルな設定:** 読みやすいTOML設定。
+
+## 使用方法
+
+![demo](https://github.com/Uliboooo/hypr-presto/blob/main/resource_for_readme/demo.mp4)
+
+1.  `config.toml`を準備します。
+2.  アプリケーションを実行します。
+    ```bash
+    hyprpresto
+    ```
+3.  ランチャーウィンドウが表示されます。
+4.  起動したいアプリに対応するキーを**押します**（例: `f`を押す）。
+5.  アプリが起動し、HyprPrestoは自動的に閉じます。
+6.  起動せずに閉じるには、`Esc`を押します。
 
 ## 依存関係
 
@@ -57,19 +75,6 @@ c = "code"                    # 'c'を押すとVS Codeを起動
 
 > **注意:** 正しいApp IDを見つけるには、`/usr/share/applications/`内のファイル名を確認します（例: `spotify.desktop`の場合は`spotify`を使用）。
 
-## 使用方法
-
-![Screenshot placeholder](path/to/screenshot.png)
-
-1.  `config.toml`を準備します。
-2.  アプリケーションを実行します。
-    ```bash
-    hyprpresto
-    ```
-3.  ランチャーウィンドウが表示されます。
-4.  起動したいアプリに対応するキーを**押します**（例: `f`を押す）。
-5.  アプリが起動し、HyprPrestoは自動的に閉じます。
-6.  起動せずに閉じるには、`Esc`を押します。
 
 ### Hyprlandとの統合
 
