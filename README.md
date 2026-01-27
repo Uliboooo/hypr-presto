@@ -41,7 +41,13 @@ To build from source, you will also need:
 
 ## How to Install
 
-Currently, HyprPresto is available as a binary release on GitHub.
+HyprPresto is now available on crates.io. You can install it with the following command.
+
+```bash
+cargo install hypr-presto
+```
+
+It is also available as a binary release at Release.
 
 1.  Go to the [Releases](https://github.com/uliboooo/hypr-presto/releases) page.
 2.  Download the latest `hypr-presto` binary.
@@ -82,3 +88,9 @@ You can bind HyprPresto to a key in your `hyprland.conf`:
 ```conf
 bind = $mainMod, P, exec, hypr-presto(bin path)
 ```
+
+## Links
+
+- https://crates.io/crates/hypr-presto
+- https://docs.rs/crate/hypr-presto/
+

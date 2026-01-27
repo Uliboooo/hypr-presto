@@ -41,7 +41,13 @@ HyprPrestoを実行するには、システムに以下がインストールさ�
 
 ## インストール方法
 
-現在、HyprPrestoはGitHubでバイナリリリースとして利用可能です。
+現在、HyprPrestoはcrates.ioでリリースされています。以下のコマンドでインストールできます。
+
+```bash
+cargo install hypr-presto
+```
+
+また、Releaseにてバイナリリリースとしても利用可能です。
 
 1.  [Releases](https://github.com/uliboooo/hypr-presto/releases)ページにアクセスします。
 2.  最新の`hypr-presto`バイナリをダウンロードします。
@@ -83,3 +89,9 @@ c = "code"                    # 'c'を押すとVS Codeを起動
 ```conf
 bind = $mainMod, P, exec, hypr-presto(bin path)
 ```
+
+## Links
+
+- https://crates.io/crates/hypr-presto
+- https://docs.rs/crate/hypr-presto/
+
