@@ -5,6 +5,7 @@ edition = "2024"
 repository = "https://github.com/Uliboooo/hypr-presto"
 license = "MIT OR Apache-2.0"
 authors = ["Uliboooo uliboulibo@gmail.com"]
+description = "Launch your favorite apps with a single keystroke. HyprPresto is a minimal, keyboard-centric application launcher for Linux. Activate it, press one key, and your app is running."
 
 [dependencies]
 gtk4 = { version = "0.10", features = ["v4_10"] }
