@@ -16,7 +16,7 @@ Linux向けのミニマルでキーボード中心のアプリケーションラ
 
 ## 使用方法
 
-![demo](https://github.com/Uliboooo/hypr-presto/blob/main/resource_for_readme/demo.mp4)
+![demo](https://github.com/Uliboooo/hypr-presto/blob/main/resource_for_readme/demo.gif)
 
 1.  `config.toml`を準備します。
 2.  アプリケーションを実行します。

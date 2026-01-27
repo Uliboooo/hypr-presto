@@ -16,7 +16,7 @@ A minimal, keyboard-centric application launcher for Linux, designed for speed a
 
 ## Usage
 
-![demo](https://github.com/Uliboooo/hypr-presto/blob/main/resource_for_readme/demo.mp4)
+![demo](https://github.com/Uliboooo/hypr-presto/blob/main/resource_for_readme/demo.gif)
 
 1.  Ensure you have your `config.toml` ready.
 2.  Run the application:
