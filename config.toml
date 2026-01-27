@@ -1,0 +1,3 @@
+[apps]
+f = "firefox"
+g = "com.mitchellh.ghostty"

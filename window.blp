@@ -1,0 +1,25 @@
+using Gtk 4.0;
+
+ApplicationWindow prefix_launcher { 
+  title: "Prefix Launcher";
+  default-width: 400;
+  default-height: 300;
+
+  [contollers]
+  EventControllerKey key_controller {
+  }
+
+  Box main_box {
+    orientation: vertical;
+    spacing: 12;
+    margin-top: 12;
+    margin-bottom: 12;
+    margin-start: 12;
+    margin-end: 12;
+
+    Label {
+      label: "Prefix Launcher";
+      styles ["title-1"]
+    }
+  }
+}
