@@ -43,7 +43,7 @@ fn load_config() -> LaunchData {
 }
 
 fn get_config_path() -> Option<PathBuf> {
-    let xdg_dirs = BaseDirectories::with_prefix("prefix-launcher");
+    let xdg_dirs = BaseDirectories::with_prefix("hypr-presto");
     xdg_dirs.find_config_file("config.toml")
 }
 
@@ -77,8 +77,8 @@ fn build_ui(app: &Application) {
     let launch_data = load_config();
 
     let flow_box = FlowBox::builder()
-        .valign(gtk4::Align::Center)
-        .halign(gtk4::Align::Center)
+        .valign(gtk4::Align::Start)
+        .halign(gtk4::Align::Start)
         .max_children_per_line(5)
         .min_children_per_line(1)
         .selection_mode(gtk4::SelectionMode::None)
@@ -128,10 +128,6 @@ fn build_ui(app: &Application) {
     let main_box: gtk4::Box = builder
         .object("main_box")
         .expect("Could not find box 'main_box'");
-
-    // Center content
-    main_box.set_valign(gtk4::Align::Center);
-    main_box.set_halign(gtk4::Align::Center);
 
     main_box.append(&flow_box);
 

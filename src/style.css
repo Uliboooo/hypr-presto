@@ -4,10 +4,15 @@ window {
     border-radius: 16px;
 }
 
+#main_box {
+    padding: 20px;
+}
+
 .title-1 {
     color: #cba6f7;
     font-weight: 800;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 flowboxchild {
