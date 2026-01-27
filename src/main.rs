@@ -49,7 +49,7 @@ fn get_config_path() -> Option<PathBuf> {
 
 fn main() -> glib::ExitCode {
     let app = Application::builder()
-        .application_id("dev.uliboooo.prefix-launcher")
+        .application_id("dev.uliboooo.hypr-presto")
         .build();
 
     app.connect_activate(build_ui);

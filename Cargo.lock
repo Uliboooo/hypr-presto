@@ -442,6 +442,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 
 [[package]]
+name = "hypr-presto"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "gtk4",
+ "gtk4-layer-shell",
+ "serde",
+ "toml",
+ "xdg",
+]
+
+[[package]]
 name = "indexmap"
 version = "2.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -525,18 +537,6 @@ name = "pkg-config"
 version = "0.3.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7edddbd0b52d732b21ad9a5fab5c704c14cd949e5e9a1ec5929a24fded1b904c"
-
-[[package]]
-name = "prefix-launcher"
-version = "0.2.0"
-dependencies = [
- "anyhow",
- "gtk4",
- "gtk4-layer-shell",
- "serde",
- "toml",
- "xdg",
-]
 
 [[package]]
 name = "proc-macro-crate"

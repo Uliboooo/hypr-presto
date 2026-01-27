@@ -1,6 +1,6 @@
 [package]
-name = "prefix-launcher"
-version = "0.2.0"
+name = "hypr-presto"
+version = "0.1.0"
 edition = "2021"
 
 [dependencies]
