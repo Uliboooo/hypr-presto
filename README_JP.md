@@ -76,8 +76,10 @@ HyprPrestoは設定ファイルの場所としてXDG規格に従います。
 [apps]
 f = "firefox"                 # 'f'を押すとFirefoxを起動
 g = "com.mitchellh.ghostty"   # 'g'を押すとGhosttyを起動
-c = "code"                    # 'c'を押すとVS Codeを起動
+c = "code-oss"                    # 'c'を押すとVS Codeを起動
 ```
+
+my config: https://github.com/Uliboooo/dotfiles/tree/main/.config/hypr-presto
 
 > **注意:** 正しいApp IDを見つけるには、`/usr/share/applications/`内のファイル名を確認します（例: `spotify.desktop`の場合は`spotify`を使用）。
 
