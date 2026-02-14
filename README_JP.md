@@ -76,7 +76,7 @@ HyprPrestoは設定ファイルの場所としてXDG規格に従います。
 [apps]
 f = "firefox"                 # 'f'を押すとFirefoxを起動
 g = "com.mitchellh.ghostty"   # 'g'を押すとGhosttyを起動
-c = "code-oss"                    # 'c'を押すとVS Codeを起動
+c = "code-oss"                # 'c'を押すとVS Codeを起動
 ```
 
 my config: https://github.com/Uliboooo/dotfiles/tree/main/.config/hypr-presto
@@ -96,4 +96,3 @@ bind = $mainMod, P, exec, hypr-presto(bin path)
 
 - https://crates.io/crates/hypr-presto
 - https://docs.rs/crate/hypr-presto/
-

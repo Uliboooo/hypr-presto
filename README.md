@@ -76,7 +76,7 @@ The configuration file uses the TOML format. Define your shortcuts under the `[a
 [apps]
 f = "firefox"                 # Press 'f' to launch Firefox
 g = "com.mitchellh.ghostty"   # Press 'g' to launch Ghostty
-c = "code-oss"                    # Press 'c' to launch VS Code
+c = "code-oss"                # Press 'c' to launch VS Code
 ```
 
 my config: https://github.com/Uliboooo/dotfiles/tree/main/.config/hypr-presto
@@ -95,4 +95,3 @@ bind = $mainMod, P, exec, hypr-presto(bin path)
 
 - https://crates.io/crates/hypr-presto
 - https://docs.rs/crate/hypr-presto/
-

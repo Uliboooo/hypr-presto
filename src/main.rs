@@ -10,13 +10,20 @@ use xdg::BaseDirectories;
 type LaunchData = HashMap<String, String>;
 
 #[derive(Deserialize, Debug, Default)]
+struct WindowConfig {
+    width: Option<i32>,
+    height: Option<i32>,
+}
+
+#[derive(Deserialize, Debug, Default)]
 struct Config {
+    window: Option<WindowConfig>,
     apps: LaunchData,
 }
 
 // fn load_all_desktop_apps() {}
 
-fn load_config() -> LaunchData {
+fn load_config() -> Config {
     let conf_path = get_config_path();
     match conf_path {
         Some(v) => {
@@ -24,21 +31,19 @@ fn load_config() -> LaunchData {
                 Ok(c) => c,
                 Err(_) => {
                     eprintln!("Could not read config.toml");
-                    return HashMap::new();
+                    return Config::default();
                 }
             };
 
-            let config: Config = match toml::from_str(&content) {
+            match toml::from_str(&content) {
                 Ok(c) => c,
                 Err(e) => {
                     eprintln!("Failed to parse config: {}", e);
-                    return HashMap::new();
+                    Config::default()
                 }
-            };
-
-            config.apps
+            }
         }
-        None => HashMap::new(),
+        None => Config::default(),
     }
 }
 
@@ -74,7 +79,8 @@ fn build_ui(app: &Application) {
         gtk4::STYLE_PROVIDER_PRIORITY_APPLICATION,
     );
 
-    let launch_data = load_config();
+    let config = load_config();
+    let launch_data = config.apps;
 
     let flow_box = FlowBox::builder()
         .valign(gtk4::Align::Start)
@@ -82,8 +88,8 @@ fn build_ui(app: &Application) {
         .max_children_per_line(5)
         .min_children_per_line(1)
         .selection_mode(gtk4::SelectionMode::None)
-        .column_spacing(20)
-        .row_spacing(20)
+        .column_spacing(12)
+        .row_spacing(12)
         .build();
 
     launch_data.iter().filter(|d| runnable(d.1)).for_each(|f| {
@@ -95,23 +101,28 @@ fn build_ui(app: &Application) {
         if let Some(icon_data) = icon {
             img.set_from_gicon(&icon_data);
         }
-        img.set_pixel_size(64);
+        img.set_pixel_size(48);
         img.add_css_class("app-icon");
+        img.set_halign(gtk4::Align::Center);
 
         let key_label = gtk4::Label::new(Some(&f.0.to_uppercase().to_string()));
         key_label.add_css_class("app-key");
+        key_label.set_halign(gtk4::Align::Center);
 
         let name_label = gtk4::Label::new(Some(&name));
         name_label.add_css_class("app-name");
+        name_label.set_ellipsize(gtk4::pango::EllipsizeMode::End);
+        name_label.set_max_width_chars(10);
+        name_label.set_halign(gtk4::Align::Center);
 
-        let vbox = gtk4::Box::new(gtk4::Orientation::Vertical, 8);
+        let vbox = gtk4::Box::new(gtk4::Orientation::Vertical, 4);
         vbox.append(&img);
         vbox.append(&key_label);
         vbox.append(&name_label);
-        vbox.set_margin_top(15);
-        vbox.set_margin_bottom(15);
-        vbox.set_margin_start(15);
-        vbox.set_margin_end(15);
+        vbox.set_width_request(100);
+        vbox.set_height_request(120);
+        vbox.set_halign(gtk4::Align::Center);
+        vbox.set_valign(gtk4::Align::Center);
 
         // FlowBoxChild is created automatically, but we just insert the box content
         // Note: The CSS style `flowboxchild` will target the container created by insert
@@ -124,6 +135,15 @@ fn build_ui(app: &Application) {
     let window: ApplicationWindow = builder
         .object("prefix_launcher")
         .expect("Could not find window 'prefix_launcher'");
+
+    if let Some(window_config) = config.window {
+        if let Some(width) = window_config.width {
+            window.set_default_width(width);
+        }
+        if let Some(height) = window_config.height {
+            window.set_default_height(height);
+        }
+    }
 
     let main_box: gtk4::Box = builder
         .object("main_box")
@@ -143,6 +163,7 @@ fn build_ui(app: &Application) {
         .expect("Could not find key controller 'key_controller'");
     let window_weak = window.downgrade();
 
+    let launch_data_clone = launch_data.clone();
     key_controller.connect_key_pressed(move |_, keyval, _, _| {
         if keyval == gdk::Key::Escape {
             if let Some(window) = window_weak.upgrade() {
@@ -156,7 +177,7 @@ fn build_ui(app: &Application) {
             .trim()
             .to_string();
 
-        let res = launch_data
+        let res = launch_data_clone
             .get(&input_key)
             .and_then(|app_id| gio::DesktopAppInfo::new(&format!("{app_id}.desktop")))
             .map(|f| f.launch(&[], Some(&gio::AppLaunchContext::new())));
@@ -179,10 +200,6 @@ fn build_ui(app: &Application) {
 
         glib::Propagation::Proceed
     });
-
-    // Load config just to show we did it (logic wasn't used in C app for UI yet)
-    let _apps = load_config();
-    // In the future, _apps could be used to populate buttons dynamically.
 
     window.present();
 }
