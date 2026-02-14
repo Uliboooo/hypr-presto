@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="resource_for_readme/logo.svg" alt="HyprPresto Logo" width="800">
+</p>
+
 # HyprPresto
 
 current version: 0.1.0

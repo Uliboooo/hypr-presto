@@ -1,0 +1,28 @@
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#cba6f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fab387;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="200" rx="40" ry="40" fill="#1e1e2e" />
+  
+  <!-- Icon / Symbol: Stylized Fast 'H' -->
+  <g transform="translate(60, 50) scale(1.2)">
+    <path d="M10 0 L10 80 M50 0 L50 80 M10 40 L50 40" stroke="#cba6f7" stroke-width="12" stroke-linecap="round" />
+    <path d="M65 20 L85 40 L65 60" stroke="#fab387" stroke-width="12" stroke-linecap="round" fill="none" />
+    <line x1="75" y1="40" x2="110" y2="40" stroke="#fab387" stroke-width="12" stroke-linecap="round" />
+  </g>
+
+  <!-- Text -->
+  <text x="220" y="130" font-family="sans-serif" font-weight="900" font-size="80" letter-spacing="-2">
+    <tspan fill="#cba6f7">Hypr</tspan><tspan fill="#fab387">Presto</tspan>
+  </text>
+  
+  <!-- Speed lines -->
+  <line x1="700" y1="80" x2="760" y2="80" stroke="#fab387" stroke-width="6" stroke-linecap="round" opacity="0.6" />
+  <line x1="720" y1="105" x2="770" y2="105" stroke="#fab387" stroke-width="6" stroke-linecap="round" opacity="0.4" />
+  <line x1="710" y1="130" x2="750" y2="130" stroke="#fab387" stroke-width="6" stroke-linecap="round" opacity="0.2" />
+</svg>
