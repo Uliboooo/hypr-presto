@@ -1,5 +1,6 @@
-use gtk4::{gdk, gio, prelude::*, FlowBox};
-use gtk4::{glib, Application, ApplicationWindow, Builder, EventControllerKey};
+use clap::Parser;
+use gtk4::{Application, ApplicationWindow, Builder, EventControllerKey, glib};
+use gtk4::{FlowBox, gdk, gio, prelude::*};
 use gtk4_layer_shell::{KeyboardMode, Layer, LayerShell};
 use serde::Deserialize;
 use std::collections::HashMap;
@@ -20,6 +21,10 @@ struct Config {
     window: Option<WindowConfig>,
     apps: LaunchData,
 }
+
+#[derive(Parser, Debug)]
+#[command(version, about)]
+struct Cli {}
 
 // fn load_all_desktop_apps() {}
 
@@ -53,6 +58,7 @@ fn get_config_path() -> Option<PathBuf> {
 }
 
 fn main() -> glib::ExitCode {
+    let _cli = Cli::parse();
     let app = Application::builder()
         .application_id("dev.uliboooo.hypr-presto")
         .build();
