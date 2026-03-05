@@ -8,6 +8,9 @@ current version: 0.1.0
 
 JP -> [here](https://github.com/Uliboooo/hypr-presto/blob/main/README_JP.md)}
 
+<img width="1029" height="698" alt="image" src="https://github.com/user-attachments/assets/8a9ec2b3-65a7-4495-8821-356bc2a55cff" />
+
+
 A minimal, keyboard-centric application launcher for Linux, designed for speed and efficiency. HyprPresto allows you to launch your favorite applications with a single keystroke.
 
 ## Features
@@ -17,6 +20,28 @@ A minimal, keyboard-centric application launcher for Linux, designed for speed a
 - **Wayland Native:** Built with `gtk4-layer-shell`, perfect for compositors like Hyprland and Sway.
 - **Lightweight:** Fast startup and minimal resource usage.
 - **Simple Configuration:** Easy-to-read TOML configuration.
+
+## How to Install
+
+HyprPresto is now available on crates.io. You can install it with the following command.
+
+```bash
+cargo install hypr-presto
+```
+
+It is also available as a binary release at Release.
+
+1.  Go to the [Releases](https://github.com/uliboooo/hypr-presto/releases) page.
+2.  Download the latest `hypr-presto` binary.
+3.  Make it executable:
+    ```bash
+    chmod +x hypr-presto
+    ```
+4.  (Optional) Move it to a directory in your `$PATH`, e.g., `/usr/local/bin`:
+    ```bash
+    sudo mv hypr-presto /usr/local/bin/
+    ```
+
 
 ## Usage
 
@@ -43,26 +68,6 @@ To build from source, you will also need:
 - Rust (cargo)
 - `blueprint-compiler`
 
-## How to Install
-
-HyprPresto is now available on crates.io. You can install it with the following command.
-
-```bash
-cargo install hypr-presto
-```
-
-It is also available as a binary release at Release.
-
-1.  Go to the [Releases](https://github.com/uliboooo/hypr-presto/releases) page.
-2.  Download the latest `hypr-presto` binary.
-3.  Make it executable:
-    ```bash
-    chmod +x hypr-presto
-    ```
-4.  (Optional) Move it to a directory in your `$PATH`, e.g., `/usr/local/bin`:
-    ```bash
-    sudo mv hypr-presto /usr/local/bin/
-    ```
 
 ## Configuration
 
