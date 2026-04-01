@@ -6,7 +6,7 @@
 
 current version: 0.1.0
 
-JP -> [here](https://github.com/Uliboooo/hypr-presto/blob/main/README_JP.md)}
+JP -> [here](https://github.com/Uliboooo/hypr-presto/blob/main/README_JP.md)
 
 A minimal, keyboard-centric application launcher for Linux, designed for speed and efficiency. HyprPresto allows you to launch your favorite applications with a single keystroke.
 
@@ -46,6 +46,13 @@ To build from source, you will also need:
 ## How to Install
 
 HyprPresto is now available on crates.io. You can install it with the following command.
+
+**require blueprint-compiler**
+
+```bash
+# if you use Arch
+sudo pacman -Syu blueprint-compiler
+```
 
 ```bash
 cargo install hypr-presto
