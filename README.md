@@ -25,6 +25,13 @@ A minimal, keyboard-centric application launcher for Linux, designed for speed a
 
 HyprPresto is now available on crates.io. You can install it with the following command.
 
+**require blueprint-compiler**
+
+```bash
+# if you use Arch
+sudo pacman -Syu blueprint-compiler
+```
+
 ```bash
 cargo install hypr-presto
 ```
